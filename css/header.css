@@ -1,0 +1,25 @@
+.habillage-header__container {
+  position: absolute;
+  width: 100%;
+  height: 5rem; /* 100px */
+  top: 0rem;
+  left: 0rem;
+  text-align: center;
+  border-bottom: solid 0.05rem gray;
+  background-image: url("../img/headerBG.png");
+  background-size: contain;
+  background-repeat: repeat-x;
+  z-index: 1000;
+  display: flex;
+}
+
+.habillage-header__logo {
+  font-family: "dekko";
+  color: white;
+  height: 75%;
+  font-size: 2.5rem;
+  font-weight: 0;
+  letter-spacing: 4px;
+  width: 25rem;
+  margin: auto;
+}
