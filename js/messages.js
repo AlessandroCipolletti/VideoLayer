@@ -23,19 +23,19 @@
   function _setType (type) {
 
     _resetType();
-    _dom.classList.add("habillage-messages__container-" + type);
+    _dom.classList.add("messages__container-" + type);
 
   }
 
   function _resetType () {
 
     _dom.classList.remove(
-      "habillage-messages__container-success",
-      "habillage-messages__container-error",
-      "habillage-messages__container-info",
-      "habillage-messages__container-alert",
-      "habillage-messages__container-confirm",
-      "habillage-messages__container-input"
+      "messages__container-success",
+      "messages__container-error",
+      "messages__container-info",
+      "messages__container-alert",
+      "messages__container-confirm",
+      "messages__container-input"
     );
 
   }
@@ -44,9 +44,9 @@
 
     _isOpen = true;
     _currentIsMandatory = mandatory;
-    Utils.addGlobalStatus("habillage__MESSAGE-OPEN");
+    Utils.addGlobalStatus("MESSAGE-OPEN");
     if (mandatory) {
-      Utils.addGlobalStatus("habillage__MESSAGE-MANDATORY-OPEN");
+      Utils.addGlobalStatus("MESSAGE-MANDATORY-OPEN");
       Utils.fadeInElements(_overlay);
     } else {
       _autoCloseTimeout = setTimeout(_hide, _config.autoCloseDelay);
@@ -57,9 +57,9 @@
   function _hide (blockStack) {
 
     _isOpen = false;
-    Utils.removeGlobalStatus("habillage__MESSAGE-OPEN");
+    Utils.removeGlobalStatus("MESSAGE-OPEN");
     if (_currentIsMandatory) {
-      Utils.removeGlobalStatus("habillage__MESSAGE-MANDATORY-OPEN");
+      Utils.removeGlobalStatus("MESSAGE-MANDATORY-OPEN");
       Utils.fadeOutElements(_overlay);
       _currentIsMandatory = false;
     }
@@ -179,7 +179,7 @@
 
     _callbackClosePanel = callbackClose || false;
     if (force || _panelIsOpen === false) {
-      content.classList.add("habillage-panel-content");
+      content.classList.add("panel-content");
       if (styles) {
         _panel.style = "";
         for (var k in styles) {
@@ -222,13 +222,13 @@
       labelCancel: "Cancel"
     }, Param.container, function (templateDom) {
 
-      _overlay = document.querySelector(".habillage-messages__overlay");
-      _dom = document.querySelector(".habillage-messages__container");
-      _message = _dom.querySelector(".habillage-messages__container-text");
-      _confirmButton = _dom.querySelector(".habillage-messages__container-button-ok");
-      _cancelButton = _dom.querySelector(".habillage-messages__container-button-cancel");
-      _panel = document.querySelector(".habillage-messages__panel");
-      _panelClose = _panel.querySelector(".habillage-messages__panel-close");
+      _overlay = document.querySelector(".messages__overlay");
+      _dom = document.querySelector(".messages__container");
+      _message = _dom.querySelector(".messages__container-text");
+      _confirmButton = _dom.querySelector(".messages__container-button-ok");
+      _cancelButton = _dom.querySelector(".messages__container-button-cancel");
+      _panel = document.querySelector(".messages__panel");
+      _panelClose = _panel.querySelector(".messages__panel-close");
       _panelClose.addEventListener(Param.eventStart, _panelCloseClick);
       _overlay.addEventListener(Param.eventStart, function (e) {
         e.preventDefault();

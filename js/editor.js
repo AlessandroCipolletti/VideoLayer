@@ -60,8 +60,8 @@
 
   function _updateLayers () {
 
-    var time = _container.result.video.currentTime;
-    if (time < _container.result.video.duration) {
+    var time = _container.preview.video.currentTime;
+    if (time < _container.preview.video.duration) {
       for (var i = Object.keys(_data.layers).length; i > 0 ; i--) {
         if (_data.layers[i].started === false && _data.layers[i].startTime < time) {
           _data.layers[i].started = true;
@@ -81,7 +81,7 @@
 
   function _play () {
 
-    _container.result.video.play()
+    _container.preview.video.play()
     requestAnimationFrame(_updateLayers);
 
   }
@@ -89,10 +89,10 @@
   function _newLayerDom (index) {
 
     var layer = document.createElement("div");
-    layer.classList.add("habillage-editor__result-layer");
+    layer.classList.add("editor__preview-layer");
     layer.index = index;
     layer.style.zIndex = (index + 1) * 10;
-    _container.result.appendChild(layer);
+    _container.preview.appendChild(layer);
     _data.layers[index].dom = layer;
     return layer;
 
@@ -161,27 +161,31 @@
     return new Promise (function (resolve, reject) {
       var video = document.createElement("video");
       video.controls = false;
-      _container.result.appendChild(video);
-      _container.result.video = video;
+      _container.preview.appendChild(video);
+      _container.preview.video = video;
       video.addEventListener("loadeddata", resolve);
       video.src = "media/" + _data.fileName;
     });
 
   }
 
-  function _onRotate (e) {
-    // do some stuff
-  }
+  // function _onRotate (e) {
+  //   // do some stuff
+  // }
 
   function _initDom () {
 
     Main.loadTemplate("editor", {
-      marginTop: Param.headerSize
+      marginTop: Param.headerSize,
+      fromLabel: "From: ",
+      toLabel: "To: "
     }, Param.container, function (templateDom) {
 
       _container = templateDom;
-      _container.result = templateDom.querySelector(".habillage-editor__result-container");
-      _loadVideo().then(_loadLayers).then(_play);
+      _container.preview = templateDom.querySelector(".editor__preview");
+      _container.play = templateDom.querySelector(".editor__preview-gotofullscreen");
+      _container.play.addEventListener(Param.eventStart, _play);
+      _loadVideo().then(_loadLayers);//.then(_play);
       // Main.addRotationHandler(_onRotate);
 
     });

@@ -21,12 +21,12 @@
     app.HEIGHT = window.innerHeight;
     // console.log("rotate:", app.WIDTH, app.HEIGHT);
 
-    app.Utils.removeGlobalStatus("habillage__LANDSCAPE");
-    app.Utils.removeGlobalStatus("habillage__PORTRAIT");
+    app.Utils.removeGlobalStatus("LANDSCAPE");
+    app.Utils.removeGlobalStatus("PORTRAIT");
     if (app.WIDTH >= app.HEIGHT) {
-      app.Utils.addGlobalStatus("habillage__LANDSCAPE");
+      app.Utils.addGlobalStatus("LANDSCAPE");
     } else {
-      app.Utils.addGlobalStatus("habillage__PORTRAIT");
+      app.Utils.addGlobalStatus("PORTRAIT");
     }
 
     if (_initialised) {
@@ -64,7 +64,7 @@
   function _initDom () {
 
     _container = document.createElement("div");
-    _container.classList.add("habillage__container");
+    _container.classList.add("container");
     document.body.appendChild(_container);
     app.Param.container = _container;
     window.addEventListener(app.Param.eventResize, _onRotate, false);
@@ -89,24 +89,24 @@
   function _addEnviromentGlobalStatus () {
 
     if (app.Param.isMobile) {
-      app.Utils.addGlobalStatus("habillage__MOBILE");
+      app.Utils.addGlobalStatus("MOBILE");
       if (app.Param.isPhone) {
-        app.Utils.addGlobalStatus("habillage__PHONE");
+        app.Utils.addGlobalStatus("PHONE");
       } else if (app.Param.isTablet) {
-        app.Utils.addGlobalStatus("habillage__TABLET");
+        app.Utils.addGlobalStatus("TABLET");
       }
     } else {
-      app.Utils.addGlobalStatus("habillage__DESKTOP");
+      app.Utils.addGlobalStatus("DESKTOP");
     }
     if (app.Param.ios) {
-      app.Utils.addGlobalStatus("habillage__IOS");
+      app.Utils.addGlobalStatus("IOS");
       if (app.Param.ipad) {
-        app.Utils.addGlobalStatus("habillage__IPAD");
+        app.Utils.addGlobalStatus("IPAD");
       } else {
-        app.Utils.addGlobalStatus("habillage__IPHONE");
+        app.Utils.addGlobalStatus("IPHONE");
       }
     } else if (app.Param.android) {
-      app.Utils.addGlobalStatus("habillage__ANDROID");
+      app.Utils.addGlobalStatus("ANDROID");
     }
 
   }

@@ -494,16 +494,16 @@
 
   function _initDom () {
 
-    _overlaySpinner = Utils.createDom("habillage__overlay-spinner", "displayNone", "fadeOut");
+    _overlaySpinner = Utils.createDom("overlay-spinner", "displayNone", "fadeOut");
     var spinner = document.createElement("img");
-    spinner.classList.add("habillage__overlay-spinner-image");
+    spinner.classList.add("overlay-spinner-image");
     spinner.src = "img/spinner.gif";
     _overlaySpinner.appendChild(spinner);
     _overlaySpinner.addEventListener(Param.eventStart, function (e) {
       e.preventDefault();
     });
     Param.container.appendChild(_overlaySpinner);
-    _popupContainer = Utils.createDom("habillage__popup-container", "popup");
+    _popupContainer = Utils.createDom("popup-container", "popup");
 
   }
 
